@@ -7,8 +7,11 @@ This app is built in Sinatra and has no external database dependencies; instead 
 #### 3. Setup Database and Start Server
 In the application directory, run the following:
 1. `$ bundle install` - This will pull in dependencies from their remote repositories.
+
 2. `$ bundle exec rake db:create` - This will create the sqlite3 database file
+
 3. `$ bundle exec rake db:migrate` - This runs database migrations to set up tables
+
 4. `$ rackup` - Starts the server and shows the console
 
 #### 4. Load the Application
@@ -36,4 +39,3 @@ Open a browser, and point it to http://localhost:9292. You'll see a very simple 
 #### What would I do differently next time?
 - If I had enough time and room on the road to change environments, I'd probably try to do this with a different language, perhaps node or python.
 - I'd love to make this look better, but I chose function over form
-
