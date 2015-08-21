@@ -6,6 +6,7 @@ This app is built in Sinatra and has no external database dependencies; instead 
 
 #### 3. Setup Database and Start Server
 In the application directory, run the following:
+
 1. `$ bundle install` - This will pull in dependencies from their remote repositories.
 
 2. `$ bundle exec rake db:create` - This will create the sqlite3 database file
