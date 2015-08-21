@@ -16,7 +16,7 @@ In the application directory, run the following:
 4. `$ rackup` - Starts the server and shows the console
 
 #### 4. Load the Application
-Open a browser, and point it to [http://localhost:9292]. You'll see a very simple screen with a button to launch the Smartsheet OAuth2 flow.
+Open a browser, and point it to [http://localhost:9292](http://localhost:9292). You'll see a very simple screen with a button to launch the Smartsheet OAuth2 flow.
 
 ---
 
