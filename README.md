@@ -13,7 +13,9 @@ In the application directory, run the following:
 
 3. `$ bundle exec rake db:migrate` - This runs database migrations to set up tables
 
-4. `$ rackup` - Starts the server and shows the console
+4. Edit `app.rb` and find the `SS_CLIENTID` constant on line 8. Add a valid Smartsheet client ID in the quotes. Find the `SS_APPSECRET` constant on line 9. Add a valid Smartsheet application secret in the quotes. __The application will not function without these values__
+
+5. `$ rackup` - Starts the server and shows the console
 
 #### 4. Load the Application
 Open a browser, and point it to [http://localhost:9292](http://localhost:9292). You'll see a very simple screen with a button to launch the Smartsheet OAuth2 flow.
