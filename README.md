@@ -40,5 +40,6 @@ Open a browser, and point it to [http://localhost:9292](http://localhost:9292). 
 - It's definitely not pretty. I used default Bootstrap components because they were ready at hand. They work, but they definitely aren't amazing.
 
 #### What would I do differently next time?
+- This would have been a great place to work in a React.js/Flux application
 - If I had enough time and room on the road to change environments, I'd probably try to do this with a different language, perhaps node or python.
 - I'd love to make this look better, but I chose function over form
