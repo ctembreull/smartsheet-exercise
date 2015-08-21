@@ -5,8 +5,8 @@ module Smartsheet
 
     SS_API_URL   = 'https://api.smartsheet.com'
     SS_API_VERSION = '2.0'
-    SS_CLIENTID  = 'rgvgkyayxwuxhcfind'
-    SS_APPSECRET = '1hbwa5z2dn1efkubbu8'
+    SS_CLIENTID  = ''
+    SS_APPSECRET = ''
 
     configure do
       register Sinatra::Reloader if development?
