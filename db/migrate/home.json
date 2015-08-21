@@ -1,0 +1,44 @@
+{
+  "sheets":[
+    {
+      "id":7033854822246276,
+      "name":"New Hire Checklist",
+      "accessLevel":"OWNER",
+      "permalink":"https://app.smartsheet.com/b/home?lx=RwSxVyQOHlVSKHh91zx9kw",
+      "createdAt":"2015-08-20T01:01:14Z",
+      "modifiedAt":"2015-08-20T01:01:13Z"
+    }
+  ],
+  "folders":[
+    {
+      "id":1453375024850820,
+      "name":"Stuff",
+      "permalink":"https://app.smartsheet.com/b/home?lx=phMPIikRTVDZA7p4Bs5vm12F3tjZfBYMXSEruozjq1E",
+      "folders":[
+        {
+          "id":1875587489916804,
+          "name":"Specific Stuff",
+          "permalink":"https://app.smartsheet.com/b/home?lx=EyEq5d_KPPedc5oHW8Q4pl2F3tjZfBYMXSEruozjq1E",
+          "sheets": [
+            {
+              "id":4013496380745604,
+              "name":"Contacts",
+              "accessLevel":"OWNER",
+              "permalink":"https://app.smartsheet.com/b/home?lx=ku7ZZr2UgCIXbv6e6LVWxA",
+              "createdAt":"2015-08-20T00:53:03Z",
+              "modifiedAt":"2015-08-20T00:58:08Z"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "workspaces":[
+    {
+      "id":7909444639057796,
+      "name":"New Workspace",
+      "accessLevel":"OWNER",
+      "permalink":"https://app.smartsheet.com/b/home?lx=6CuHmvDJiwANjaA1cuzFyA"
+    }
+  ]
+}

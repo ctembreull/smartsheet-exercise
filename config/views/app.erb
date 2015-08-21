@@ -1,0 +1,55 @@
+<script type="text/javascript">
+  var ajax_host = '<%= url('/') %>'
+</script>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand" id="user_widget_container">Sheet Column Inspector</div>
+    </div>
+    <div class="nav navbar-nav navbar-right"><a href="<%= url('/signout') %>">Sign Out</a></div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="panel-group" id="browser" role="tablist" aria-multiselectabl="false">
+        <div class="panel panel-default">
+
+          <div class="panel-heading" role="tab" id="navRoot">
+            <h5 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="browser" href="#root" aria-expanded="true" aria-controls="collapseOne">
+                <span class="glyphicon glyphicon-home"></span> <%= @user.email_address %>
+                (<%= @home.sheets.size + @home.folders.size + @home.workspaces.size %>)
+              </a>
+            </h5>
+          </div>
+
+          <div id="root" class="panel-collapse collapse" role="tabpanel" aria-labelledby="root">
+            <div class="panel-body">
+              <% unless @home.sheets.empty? %>
+                <% @home.sheets.each do |sheet| %>
+                  <%= erb :sheet, locals: {sheet: sheet} %>
+                <% end %>
+              <% end %>
+              <% unless @home.folders.empty? %>
+                <% @home.folders.each do |folder| %>
+                  <%= erb :folder, locals: {folder: folder} %>
+                <% end %>
+              <% end %>
+              <% unless @home.workspaces.empty? %>
+                <% @home.workspaces.each do |workspace| %>
+                  <%= erb :workspace, locals: {workspace: workspace} %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

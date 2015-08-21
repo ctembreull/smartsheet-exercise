@@ -1,0 +1,8 @@
+require 'rubygems'
+require 'bundler/setup'
+require 'sinatra/activerecord'
+require 'sinatra/reloader'
+require 'digest/sha2'
+require 'tilt/erb'
+require 'uri'
+require 'pp'
