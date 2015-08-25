@@ -25,6 +25,7 @@ class Home < Container
       destroy_structure
       create_structure(home_json)
     end
+    return self
   end
 
   def destroy_structure
@@ -73,7 +74,6 @@ class Workspace < Container
     workspace = self.find_by(smartsheet_id: wspace['id']) || Workspace.create(
       smartsheet_id: wspace['id'],
       container_id:  parent,
-      home_id:       home,
       name:          wspace['name'],
       permalink:     wspace['permalink'],
       access_level:  wspace['accessLevel']
@@ -102,7 +102,6 @@ class Folder < Container
     folder = self.find_by(smartsheet_id: folder_obj['id']) || Folder.create(
       smartsheet_id: folder_obj['id'],
       container_id:  parent,
-      home_id:       home,
       name:          folder_obj['name'],
       permalink:     folder_obj['permalink']
     )
