@@ -1,4 +1,5 @@
-$(".inspectable-sheet").click(function() {
+$(".inspectable-sheet").click(function(evt) {
+  evt.preventDefault()
   sheet    = $(this)
 
   if ($(this).data('content') == "" || $(this).data('content') == null) {
