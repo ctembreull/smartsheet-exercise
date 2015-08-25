@@ -1,10 +1,22 @@
 require 'pp'
 
-class Home < ActiveRecord::Base
+class DeprecatedHome < ActiveRecord::Base
 
-  belongs_to :user
+  # belongs_to :user
+  # has_one    :root, class_name: Container, dependent: :destroy
+
+  after_create do
+    if root.nil?
+      root = Root.create_for(this)
+    end
+  end
 
   def explode
+    if root.nil?
+      root = Root.create_for(self)
+      save
+    end
+
     return HomeStructure.new(raw_json)
   end
 
