@@ -26,6 +26,7 @@ Open a browser, and point it to [http://localhost:9292](http://localhost:9292). 
 - Smartsheet API version 2.0
 - Button to launch web-based auth flow
 - Retrieve and persist home structure
+- Home structure now persisted as full models
 - Home page from persisted home structure
 - Home page contents
   - user's email address
@@ -34,8 +35,29 @@ Open a browser, and point it to [http://localhost:9292](http://localhost:9292). 
 - Extra credit!
   - collapsing tree structure (it's just a Bootstrap collapse hack, but it works)
 
+#### What's new in this version?
+- The home structure was previously persisted as a JSON blob in a very simple model, and was parsed on-demand
+as a nested set of ruby objects. In this version, I've expanded the home structure into a more full-featured
+model, using single-table inheritance for the root of the structure itself, and its folders and workspaces.
+To this end, I have created a `Container` datatype, which implements a `container_id` attribute - a foreign key
+to an object in the same table which Smartsheet indicates is the parent of the object - and a `type` attribute,
+which allows me to subclass the Container model as 3 different datatypes: `Home`, `Folder`, and `Workspace`. In
+this way, I can change the inheritance rules based on what sort of data container I'm working with; e.g. a Home
+object can contain Sheets, Folders, and Workspaces - but Folders and Workspaces cannot contain Workspaces. All
+three subtypes can contain Sheets, which are stored in a separate table and implement their own `container_id`
+attribute.
+
 #### What doesn't work?
-- I ran out of time before being able to persist an expanded version of the model. As things stand right now, I persist the JSON home structure for the user as text, and then make that available to the page via tableless models that we create by parsing the JSON and exploding it into an object structure. With more time, I'd add the persistence backing for those models and do the JSON-explode operation when I retrieve the structure, instead of when the user loads the app.
+- The queries are inefficient. In an earlier revision, I also had each Container and Sheet subtype object also
+include a reference to the Home object of which it was an eventual child. I planned to implement eager-loading
+of a Home structure's child objects, since it's known they're all going to be displayed (in this use-case) anyway.
+This worked in that it did preload the objects correctly, but I ran into namespace conflicts with ActiveRecord,
+in that AR knew we had pre-loaded objects of type Container, but not of type Folder or Workspace. If I can solve
+for that problem, then eager loading will make the queries MUCH faster.
+- While there is an expanded data model in place, the problem of canonicality is addressed via brute-force. Every
+time a user loads the app screen, the Home model deletes all of its child objects before replacing them from a
+fresh get of the Home structure data from the API. I would have liked to build an optimizing data-expirer, but
+I judged that to be slightly outside the scope of the task. It is on my feature list, however.
 - I didn't have enough time to add in the token refresh that I wanted to.
 - It's definitely not pretty. I used default Bootstrap components because they were ready at hand. They work, but they definitely aren't amazing.
 
