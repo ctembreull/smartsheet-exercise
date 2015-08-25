@@ -36,9 +36,8 @@ module Smartsheet
       end
 
       @user = User.find_by_token(session[:token])
-      @home = Home.find_or_create_by(@user)
-      @home.refresh
-      @home = @home.explode
+      redirect url('/signout') if @user.nil?
+      @home = @user.home.refresh
 
       erb :base, layout: false do
         erb :app
