@@ -16,6 +16,12 @@
             <%= erb :sheet, locals: {sheet: sheet} %>
           <% end %>
         <% end %>
+
+        <% unless workspace.folders.empty? %>
+          <% workspace.folders.each do |folder| %>
+            <%= erb :folder, locals: {folder: folder} %>
+          <% end %>
+        <% end %>
       </div>
     </div>
 
