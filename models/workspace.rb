@@ -1,4 +1,4 @@
-class Workspace
+class DeprecatedWorkspace
   attr_reader :sheets, :id, :name, :access_level, :permalink
   def initialize(workspace)
     @id           = workspace['id']
