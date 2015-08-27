@@ -5,14 +5,14 @@ module Smartsheet
 
     SS_API_URL   = 'https://api.smartsheet.com'
     SS_API_VERSION = '2.0'
-    SS_CLIENTID  = ''
-    SS_APPSECRET = ''
+    SS_CLIENTID  = ENV['SS_CLIENTID'] || ''
+    SS_APPSECRET = ENV['SS_APPSECRET'] || ''
 
     configure do
       register Sinatra::Reloader if development?
-      set :sessions, domain: 'localhost'
-      set :session_secret, 'TODO_CHANGE_ME'
-      set :database, {adapter: 'sqlite3', database: 'db/smartsheet.sqlite3'}
+      enable :logging
+      enable :sessions
+      set :session_secret, ENV['SESSION_SECRET'] || 'TODO_CHANGE_ME'
       set :public_folder, File.dirname(__FILE__) + '/public'
     end
 
@@ -73,6 +73,10 @@ module Smartsheet
 
       flash({message: 'Signed out from Smartsheet'})
       redirect url('/')
+    end
+
+    get '/error' do
+      raise Exception, "I meant to do that"
     end
 
     get '/sheets/:sheet_id' do
@@ -151,17 +155,18 @@ module Smartsheet
     end
 
     def generate_state
-      session[:state] = (0..6).map { ('A'..'Z').to_a[rand(26)] }.join
+      (0..6).map { ('A'..'Z').to_a[rand(26)] }.join
     end
 
     def gen_auth_link
-      session[:state] = generate_state
-
+      state = generate_state
+      session[:state] = state
       base_url = "https://www.smartsheet.com/b/authorize?"
       base_url += "response_type=#{URI::encode('code')}&"
       base_url += "client_id=#{URI::encode(SS_CLIENTID)}&"
       base_url += "scope=#{URI::encode('READ_SHEETS')}&"
-      base_url += "state=#{URI::encode(session[:state])}"
+      base_url += "state=#{URI::encode(session[:state])}&"
+      #base_url += "redirect_uri=#{URI::encode(uri('/authorize'))}" if ENV['RACK_ENV'] != 'production'
     end
 
     def flash(obj)

@@ -1,0 +1,25 @@
+development:
+  adapter: postgresql
+  host: 192.168.99.100
+  port: 32771
+  user: postgres
+  database: smartsheet_dev
+  pool: 5
+  timeout: 5000
+test:
+  adapter: postgresql
+  host: 192.168.99.100
+  port: 32771
+  user: postgres
+  database: smarttsheet_test
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  host: ec2-54-163-227-94.compute-1.amazonaws.com
+  port: 5432
+  user: lzqpjlmfwawjoa
+  database: d5ndd2pbvi7ucd
+  pool: 5
+  timeout: 5000

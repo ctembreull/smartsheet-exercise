@@ -36,6 +36,8 @@ Open a browser, and point it to [http://localhost:9292](http://localhost:9292). 
   - collapsing tree structure (it's just a Bootstrap collapse hack, but it works)
 
 #### What's new in this version?
+- Now running on heroku at [http://sleepy-canyon-2701.herokuapp.com](http://sleepy-canyon-2701.herokuapp.com).
+- Now uses PostgreSQL instead of SQLite3 because Heroku doesn't like SQLite3.
 - The home structure was previously persisted as a JSON blob in a very simple model, and was parsed on-demand
 as a nested set of ruby objects. In this version, I've expanded the home structure into a more full-featured
 model, using single-table inheritance for the root of the structure itself, and its folders and workspaces.
